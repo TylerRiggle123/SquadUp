@@ -27,6 +27,7 @@
                         <li>Connect with old and new friends!</li>
                         <li>Get a squad together and post stupid memes!</li>
                         <li>Some third thing!</li>
+                        <li>"Box"-Chris</li>
                     </ul>
                 </div>
                 

@@ -1,18 +1,20 @@
-﻿<html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Homepage.aspx.cs" Inherits="Homepage" %>
+
+<html>
 <head runat="server">
     <title>Squad UP</title>
         <link href="SquadStyles.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
-        This is a load of butts
+        
         <div class="searchNav">
             <asp:TextBox ID="SearchBar" runat="server" placeholder="Search..."></asp:TextBox>
             <asp:Button ID="SearchButton" runat="server" Text="Go" />
 
             <a id="profile1" href="Profilepage.aspx"><asp:Label ID="UsersName" runat="server" Text="Label"></asp:Label></a>
             <a id="home" href="Homepage.aspx">Home</a>
-            <a id="findFriends" href="SugestedFriendspage.aspx">Find Friends</a>
+            <a id="findFriends" href="SuggestedFriendspage.aspx">Find Friends</a>
         </div>
 
         <div class="userBar">
@@ -20,13 +22,13 @@
             <p>Groups</p>
             <div id="groups">
                 
-                <a href="SugestedSquadspage.apsx">+ Join a new Squad</a>
+                <a href="SuggestedSquadspage.apsx">+ Join a new Squad</a>
             </div>
         </div>
 
-        <div class="makeForumPost">
+        <div class="createPost">
             <asp:TextBox ID="makeForumPost" runat="server" placeholder ="Hit the keys with force and vigor"></asp:TextBox>
-            <asp:Button ID="postButton" runat="server" Text="Post" />
+            <asp:Button ID="postButton" runat="server" Text="Post" OnClick="postButton_Click1" />
         </div>"
 
         <div class="newsFeed">
