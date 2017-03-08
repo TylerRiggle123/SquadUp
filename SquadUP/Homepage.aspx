@@ -11,10 +11,11 @@
         <div class="searchNav">
             <asp:TextBox ID="SearchBar" runat="server" placeholder="Search..."></asp:TextBox>
             <asp:Button ID="SearchButton" runat="server" Text="Go" />
-
-            <a id="profile1" href="Profilepage.aspx"><asp:Label ID="UsersName" runat="server" Text="Label"></asp:Label></a>
-            <a id="home" href="Homepage.aspx">Home</a>
-            <a id="findFriends" href="SuggestedFriendspage.aspx">Find Friends</a>
+            <div id="navigation">
+                <a id="profile1" href="Profilepage.aspx"><asp:Label ID="UsersName" runat="server" Text="Label"></asp:Label></a>
+                <a id="home" href="Homepage.aspx">Home</a>
+                <a id="findFriends" href="SuggestedFriendspage.aspx">Find Friends</a>
+            </div>
         </div>
 
         <div class="userBar">
@@ -32,7 +33,7 @@
         </div>"
 
         <div class="newsFeed">
-
+             
         </div>
 
         
