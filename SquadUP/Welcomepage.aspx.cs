@@ -25,9 +25,8 @@ public partial class Welcomepage : System.Web.UI.Page
         string gender = ((DropDownList)GenderList.FindControl("GenderList")).Text;
 
 
-        ArrayList idList = new ArrayList();
-        idList.Add(userEmail);
-        Session["Squuuuaaaddd"] = idList;
+        
+        Session["userEmail"]=userEmail;
 
 
         string registerSql = "insert into [User] values ('"+password+"','"+userEmail+"','"+firstName+"','"+lastName+"','"+gender+"','"+dateOfBirth+"',NULL,NULL)";
@@ -58,7 +57,7 @@ public partial class Welcomepage : System.Web.UI.Page
         string passwordLogIn = ((TextBox)passwordLogin.FindControl("passwordLogin")).Text;
 
         bool valid = false;
-        
+        Session["userEmail"] = userEmailLogIn;
         string loginSQL = "SELECT COUNT(Email) FROM [User] WHERE Email = '" + userEmailLogIn + "' AND Password = '" + passwordLogIn + "'";
         
         SqlCommand cmd = new SqlCommand(loginSQL, conn);

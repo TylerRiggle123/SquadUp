@@ -27,7 +27,7 @@
         </div>
 
         <div class="createPost">
-            <asp:TextBox ID="makeForumPost" runat="server" placeholder ="Hit the keys with force and vigor"></asp:TextBox>
+            <textarea ID="makeForumPost" runat="server" cols="20" rows="2" placeholder ="Hit the keys with force and vigor"></textarea>
             <asp:Button ID="postButton" runat="server" Text="Post" OnClick="postButton_Click1" />
         </div>"
 
