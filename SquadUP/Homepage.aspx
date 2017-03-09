@@ -10,20 +10,20 @@
         
         <div class="searchNav">
             <asp:TextBox ID="SearchBar" runat="server" placeholder="Search..."></asp:TextBox>
-            <asp:Button ID="SearchButton" runat="server" Text="Go" />
+            <asp:Button ID="SearchButton" runat="server" Text="Go" OnClick="SearchButton_Click" />
             <div id="navigation">
-                <a id="profile1" href="Profilepage.aspx"><asp:Label ID="UsersName" runat="server" Text="Label"></asp:Label></a>
+                <a id="profile1" href="UserProfile.aspx"><asp:Label ID="UsersName" runat="server" Text="Profile"></asp:Label></a>
                 <a id="home" href="Homepage.aspx">Home</a>
                 <a id="findFriends" href="SuggestedFriendspage.aspx">Find Friends</a>
             </div>
         </div>
 
         <div class="userBar">
-            <a id="profile2" href="Profilepage.aspx"><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></a>
+            <a id="profile2" href="UserProfile.aspx"><asp:Label ID="Label1" runat="server" Text="Profile"></asp:Label></a>
             <p>Groups</p>
             <div id="groups">
                 
-                <a href="SuggestedSquadspage.apsx">+ Join a new Squad</a>
+                <a href="Squads.aspx">+ Join a new Squad</a>
             </div>
         </div>
 
@@ -35,6 +35,11 @@
         <div class="newsFeed">
              
         </div>
+
+        
+
+
+        
 
         
 

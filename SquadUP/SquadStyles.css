@@ -34,8 +34,8 @@
     position: absolute;
     width: 100%;
     height: 50px;
-    top:0;
-    left:0;
+    top:9;
+    left:3;
 }
 .userBar{
     background-color:#f7f4f3;
@@ -54,6 +54,13 @@
     top:200px;
     left: 400px;
 }
+
+.newsFeed{
+    position:absolute;
+    top: 500px;
+    right: 250px;
+}
+
 
 
 /*ID Styles*/
@@ -163,6 +170,11 @@
     
 }
 
+#newfeed{
+    position:fixed;
+    top:0;
+    left:0;
+}
 /*Input Styles*/
 input[type=text],select {
     background-color: #f7f4f3;
