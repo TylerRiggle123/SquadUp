@@ -9,27 +9,26 @@ using System.Collections;
 public partial class Homepage : System.Web.UI.Page
 {
     SqlConnection conn = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
-    
+
+    //Variable Declarations 
+    private static int[] FriendIDs;
+
+    private bool AreTherePosts;
+    private bool IsFriends;
+
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        string result;
-        string userID = "Select UserID from ForumPosts";
-        string post = "Select Post from ForumPosts";
-        string datePosted = "Select DatePosted from ForumPosts";
         conn.Open();
-        SqlCommand cmd = new SqlCommand(post, conn);
-        result=cmd.ExecuteScalar().ToString();
-        Response.Write("<div class=\"newsFeed\">"+result+"</div>");
+        int UsersID = GetUsersID();
+        int[] FriendIDs = GetFriendIDs();
+        conn.Close();
 
 
 
 
     }
-    private int userID;
-
-        
-
-    
 
     protected void postButton_Click1(object sender, EventArgs e)
     {
@@ -67,5 +66,48 @@ public partial class Homepage : System.Web.UI.Page
     {
         Session["Search"] = SearchBar.Text;
         Response.Redirect("SearchResults.aspx");
+    }
+
+    private void GetPost()
+    {
+
+    }
+
+    //Grabs the current user's ID by using the Session[0].ToString()/*Email used to log in*/ in a SQL query
+    private int GetUsersID()
+    {
+        int UsersID;
+        string getID = "Select UserID from [User] where Email = '" + Session[0].ToString() + "'; ";
+        SqlCommand get = new SqlCommand(getID, conn);
+         return UsersID = Convert.ToInt32(get.ExecuteScalar().ToString());
+
+
+    }
+
+    private int[] GetFriendIDs()
+    {
+        int[] friendIDs;
+        int count = 0;
+        string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID() +"';";
+        SqlCommand getFriends = new SqlCommand(getFriendIDs, conn);
+        using (SqlDataReader rdr = getFriends.ExecuteReader())
+        {
+            while (rdr.Read())
+            {
+                count++;
+            }
+            
+        }
+        friendIDs = new int[count];
+        count = 0;
+        using (SqlDataReader rdr = getFriends.ExecuteReader())
+        {
+            while(rdr.Read())
+            {
+                friendIDs[count] = 
+                count++;
+            }
+        }
+        return friendIDs;
     }
 }

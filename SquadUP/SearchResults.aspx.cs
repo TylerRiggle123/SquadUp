@@ -14,7 +14,7 @@ public partial class SearchResults : System.Web.UI.Page
         string resultLName;
         conn.Open();
         string searchText;
-        searchText = Session[1].ToString();+
+        searchText = Session[1].ToString();
         string fName = "Select FirstName from [User] where FirstName='"+searchText+"'";
         SqlCommand cmd1 = new SqlCommand(fName, conn);
         resultFName = cmd1.ExecuteScalar().ToString();
