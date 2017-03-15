@@ -14,8 +14,6 @@ public partial class SearchResults : System.Web.UI.Page
         string resultLName;
         conn.Open();
         string searchText;
-        if(Session[1].ToString()!="")
-        { 
         searchText = Session[1].ToString();
         string fName = "Select FirstName from [User] where FirstName='"+searchText+"'";
         SqlCommand cmd1 = new SqlCommand(fName, conn);
@@ -25,9 +23,6 @@ public partial class SearchResults : System.Web.UI.Page
         SqlCommand cmd2 = new SqlCommand(lName, conn);
         
         resultLName = cmd2.ExecuteScalar().ToString();
-        Response.Write("<div class=\"searchResult\">" + resultFName + " " + resultLName + "</div>");
-        }
-        else
-        Response.Write("<div class=\"searchResult\"> No results found</div>");
+        Response.Write("<div class=\"newsFeed\">" + resultFName+" "+resultLName + "</div>");
     }
 }
