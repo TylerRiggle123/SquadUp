@@ -19,7 +19,7 @@
         </div>
 
         <div class="userBar">
-            <a id="profile2" href="UserProfile.aspx"><asp:Label ID="Label1" runat="server" Text="Profile"></asp:Label></a>
+            <a id="profile2" href="UserProfile.aspx"><asp:Label ID="UserNameSideBar" runat="server" Text="Profile"></asp:Label></a>
             <p>Groups</p>
             <div id="groups">
                 

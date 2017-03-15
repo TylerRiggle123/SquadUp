@@ -6,8 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Collections;
+ 
 public partial class Homepage : System.Web.UI.Page
 {
+    SquadFunctions squadMainClass = new SquadFunctions();
     SqlConnection conn = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
 
     //Variable Declarations 
@@ -20,14 +22,36 @@ public partial class Homepage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        conn.Open();
-        int UsersID = GetUsersID();
-        int[] FriendIDs = GetFriendIDs();
+        try
+        {
+            if (conn != null && conn.State == System.Data.ConnectionState.Closed)
+            conn.Open();
+        int UsersID = squadMainClass.GetUsersID(conn,Session[0].ToString());
+        //int[] FriendIDs = GetFriendIDs();
+        string userFName;
+        string fNameSQL = "Select FirstName from [User] where UserID='" + UsersID + "'";
+        SqlCommand cmd1 = new SqlCommand(fNameSQL, conn);
+        userFName = cmd1.ExecuteScalar().ToString();
+
+
+        string userLName;
+        string lNameSQL = "Select LastName from [User] where UserID='" + UsersID + "'";
+        SqlCommand cmd2 = new SqlCommand(lNameSQL, conn);
+        
+        userLName = cmd2.ExecuteScalar().ToString();
+        
+
+
+        UsersName.Text = userFName+" "+userLName;
+        UserNameSideBar.Text = userFName + " " + userLName;
         conn.Close();
+        }
+        catch (SqlException ex)
+        {
+            string msg = "Insert Error:";
+            msg += ex.Message;
 
-
-
-
+        }
     }
 
     protected void postButton_Click1(object sender, EventArgs e)
@@ -65,7 +89,9 @@ public partial class Homepage : System.Web.UI.Page
     protected void SearchButton_Click(object sender, EventArgs e)
     {
         Session["Search"] = SearchBar.Text;
+        
         Response.Redirect("SearchResults.aspx");
+        
     }
 
     private void GetPost()
@@ -74,21 +100,13 @@ public partial class Homepage : System.Web.UI.Page
     }
 
     //Grabs the current user's ID by using the Session[0].ToString()/*Email used to log in*/ in a SQL query
-    private int GetUsersID()
-    {
-        int UsersID;
-        string getID = "Select UserID from [User] where Email = '" + Session[0].ToString() + "'; ";
-        SqlCommand get = new SqlCommand(getID, conn);
-         return UsersID = Convert.ToInt32(get.ExecuteScalar().ToString());
+    
 
-
-    }
-
-    private int[] GetFriendIDs()
+    /*private int[] GetFriendIDs()
     {
         int[] friendIDs;
         int count = 0;
-        string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID() +"';";
+        string getFriendIDs = "Select FriendID from Friends where UserID = '" + squadMainClass.GetUsersID(conn,Session[0].ToString()) +"';";
         SqlCommand getFriends = new SqlCommand(getFriendIDs, conn);
         using (SqlDataReader rdr = getFriends.ExecuteReader())
         {
@@ -109,5 +127,5 @@ public partial class Homepage : System.Web.UI.Page
             }
         }
         return friendIDs;
-    }
+    }*/
 }
