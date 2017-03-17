@@ -71,6 +71,7 @@ public partial class Welcomepage : System.Web.UI.Page
             {
                 valid = true;
                 Response.Redirect("Homepage.aspx");
+                conn.Close();
             }
             else if (rowCount <= 0)
             {

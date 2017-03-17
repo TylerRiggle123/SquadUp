@@ -12,7 +12,7 @@
             <asp:TextBox ID="SearchBar" runat="server" placeholder="Search..."></asp:TextBox>
             <asp:Button ID="SearchButton" runat="server" Text="Go" OnClick="SearchButton_Click" />
             <div id="navigation">
-                <a id="profile1" href="UserProfile.aspx"><asp:Label ID="UsersName" runat="server" Text="Profile"></asp:Label></a>
+                <a id="profile1" href="UserProfile.aspx"><asp:Label ID="UsersNameNavBar" runat="server" Text="Profile"></asp:Label></a>
                 <a id="home" href="Homepage.aspx">Home</a>
                 <a id="findFriends" href="SuggestedFriendspage.aspx">Find Friends</a>
             </div>
@@ -32,9 +32,7 @@
             <asp:Button ID="postButton" runat="server" Text="Post" OnClick="postButton_Click1" />
         </div>"
 
-        <div class="newsFeed">
-             
-        </div>
+        
 
         
 
