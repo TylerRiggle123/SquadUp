@@ -25,6 +25,46 @@ public partial class UserProfile : System.Web.UI.Page
         
     }
 
+    protected void postButton_Click1(object sender, EventArgs e)
+    {
+
+        string sessionUserEmail = Session[0].ToString();
+        string findID = "Select UserID from [User] where Email ='" + sessionUserEmail + "'";
+
+        string userPost = makeForumPost.Value;
+
+        string result;
+        SqlCommand cmd = new SqlCommand(findID, conn);
+        try
+        {
+
+            conn.Open();
+            result = cmd.ExecuteScalar().ToString();
+            if (makeForumPost == null)
+            {
+                Response.Redirect("UserProfile.aspx");
+
+            }
+            else
+            {
+                int userID = Convert.ToInt32(result);
+                string userPostSQL = "Insert into ForumPosts values('" + userID + "','" + userPost + "',null)";
+                SqlCommand cmd1 = new SqlCommand(userPostSQL, conn);
+                cmd1.ExecuteNonQuery();
+            }
+        }
+        catch (System.Data.SqlClient.SqlException ex)
+        {
+            string msg = "Insert Error:";
+            msg += ex.Message;
+        }
+        finally
+        {
+            conn.Close();
+            Response.Redirect("UserProfile.aspx");
+        }
+    }
+
     //Grabs the current user's ID by using the Session[0].ToString()*Email used to log in* in a SQL query
     private int GetUsersID()
     {
@@ -143,7 +183,7 @@ public partial class UserProfile : System.Web.UI.Page
         sendBack = "<div class=\"userFeed\">";
         while (result.Read())
         {
-            sendBack += result.GetValue(0).ToString() + "<br>";
+            sendBack += "<div class =\"story\" > " + result.GetValue(0).ToString() + "</div>";
 
         }
         sendBack += "</div>";
