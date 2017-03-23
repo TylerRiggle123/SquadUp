@@ -29,18 +29,23 @@
 
             <h1><asp:Label ID="UsersName" runat="server" Text=""></asp:Label></h1>
 
+            <div class="createPost">
+                <textarea ID="makeForumPost" runat="server" cols="20" rows="2" placeholder ="Hit the keys with force and vigor"></textarea>
+                <asp:Button ID="postButton" runat="server" Text="Post" OnClick="postButton_Click1" />
+            </div>"
+
             <div class="editInformation">
                 <asp:TextBox ID="EditEmail" runat="server"></asp:TextBox>
-                <asp:Button ID="ConfirmEditEmail" runat="server" Text="Edit" onclick="ConfirmEditEmail_Click"/>
+                <asp:Button ID="ConfirmEditEmail" runat="server" Text="Edit" onclick="ConfirmEditEmail_Click"/><br />
 
                 <asp:TextBox ID="EditPassword" runat="server"></asp:TextBox>
-                <asp:Button ID="ConfirmEditPassword" runat="server" Text="Edit" OnClick="ConfirmEditPassword_Click" />
+                <asp:Button ID="ConfirmEditPassword" runat="server" Text="Edit" OnClick="ConfirmEditPassword_Click" /><br />
 
                 <asp:TextBox ID="EditLocation" runat="server"></asp:TextBox>
-                <asp:Button ID="ConfirmEditLocation" runat="server" Text="Edit" OnClick ="ConfirmEditLocation_Click" />
+                <asp:Button ID="ConfirmEditLocation" runat="server" Text="Edit" OnClick ="ConfirmEditLocation_Click" /><br />
 
                 <asp:TextBox ID="EditPhoneNumber" runat="server"></asp:TextBox>
-                <asp:Button ID="ConfirmEditPhoneNumber" runat="server" Text="Edit" OnClick ="ConfirmEditPhoneNumber_Click"/>
+                <asp:Button ID="ConfirmEditPhoneNumber" runat="server" Text="Edit" OnClick ="ConfirmEditPhoneNumber_Click"/><br />
             </div>
 
             
