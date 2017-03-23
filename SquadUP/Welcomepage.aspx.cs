@@ -9,6 +9,7 @@ using System.Collections;
 
 public partial class Welcomepage : System.Web.UI.Page
 {
+    
     SquadFunctions function = new SquadFunctions();
     SqlConnection conn = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
 
@@ -25,9 +26,10 @@ public partial class Welcomepage : System.Web.UI.Page
         Session["userEmail"]=userEmail;
 
 
-        string registerSql = "insert into [User](Password, Email, FirstName, LastName, Gender, dateOfBirth) values ('"+password+"','"+userEmail+"','"+firstName+"','"+lastName+"','"+gender+"','"+dateOfBirth+"',NULL,NULL)";
-
-        function.Create(registerSql);
+        string registerSql = "insert into [User](Password, Email, FirstName, LastName, Gender, dateOfBirth) values ('"+password+"','"+userEmail+"','"+firstName+"','"+lastName+"','"+gender+"','"+dateOfBirth+"')";
+        conn.Open();
+        function.Create(conn, registerSql);
+        conn.Close();
 
     }
 

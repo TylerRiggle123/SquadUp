@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using System.Data.SqlClient;
 public partial class Squads : System.Web.UI.Page
 {
+    SqlConnection conn = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
     SquadFunctions function = new SquadFunctions();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -21,7 +22,7 @@ public partial class Squads : System.Web.UI.Page
 
         string createSquad = "insert into [Squads](SquadName, SquadTag, SquadDescription) values('" + squadName + "','" + squadTag + "','" + squadDescription + "';";
 
-        function.Create(createSquad);
+        function.Create(conn,createSquad);
 
     }
 

@@ -8,16 +8,16 @@ using System.Data.SqlClient;
 
 public class SquadFunctions
 {
-    SqlConnection conn = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
+    SqlConnection con = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
 
     public int GetUsersID(string sessionEmail)
     {
-        if(conn != null && conn.State == System.Data.ConnectionState.Closed)
-        conn.Open();
+        if(con != null && con.State == System.Data.ConnectionState.Closed)
+        con.Open();
 
         int UsersID;
         string getID = "Select UserID from [User] where Email = '" + sessionEmail + "'; ";
-        SqlCommand get = new SqlCommand(getID, conn);
+        SqlCommand get = new SqlCommand(getID, con);
         try
         { 
             return UsersID = Convert.ToInt32(get.ExecuteScalar().ToString());
@@ -34,7 +34,7 @@ public class SquadFunctions
     {
         int[] z = PopulateFriendsList(sessionEmail);
         string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID(sessionEmail) + "';";
-        SqlCommand getFriends = new SqlCommand(getFriendIDs, conn);
+        SqlCommand getFriends = new SqlCommand(getFriendIDs, con);
         SqlDataReader reader = getFriends.ExecuteReader();
 
 
@@ -58,7 +58,7 @@ public class SquadFunctions
     {
         int[] friendsList;
         string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID(sessionEmail) + "';";
-        SqlCommand getFriends = new SqlCommand(getFriendIDs, conn);
+        SqlCommand getFriends = new SqlCommand(getFriendIDs, con);
 
         int x = 0;
 
@@ -79,24 +79,25 @@ public class SquadFunctions
     {
         string userName;
         string fNameSQL = "Select FirstName from [User] where UserID=" + GetUsersID(sessionEmail) + ";";
-        SqlCommand cmd1 = new SqlCommand(fNameSQL, conn);
+        SqlCommand cmd1 = new SqlCommand(fNameSQL, con);
         userName = cmd1.ExecuteScalar().ToString();
 
 
         string lNameSQL = "Select LastName from [User] where UserID=" + GetUsersID(sessionEmail) + ";";
-        SqlCommand cmd2 = new SqlCommand(lNameSQL, conn);
+        SqlCommand cmd2 = new SqlCommand(lNameSQL, con);
 
         userName += cmd2.ExecuteScalar().ToString();
 
         return userName;
     }
 
-    public void Create(string sqlCommand)
+    public void Create(SqlConnection conn, string sqlCommand)
     {
 
         try
         {
-            conn.Open();
+           
+            
             SqlCommand cmd = new SqlCommand(sqlCommand, conn);
             cmd.ExecuteNonQuery();
         }
@@ -107,7 +108,7 @@ public class SquadFunctions
         }
         finally
         {
-            conn.Close();
+            
 
 
         }
@@ -115,8 +116,8 @@ public class SquadFunctions
 
     public bool LogIn(string sqlCommand)
     {
-        conn.Open();
-        SqlCommand cmd = new SqlCommand(sqlCommand, conn);
+        con.Open();
+        SqlCommand cmd = new SqlCommand(sqlCommand, con);
 
         bool valid = false;
         try
@@ -128,7 +129,7 @@ public class SquadFunctions
             if (rowCount >= 1)
             {
                 valid = true;
-                conn.Close();
+                con.Close();
             }
             else if (rowCount <= 0)
             {
@@ -142,7 +143,7 @@ public class SquadFunctions
         }
         finally
         {
-            conn.Close();
+            con.Close();
         }
 
         return valid;
