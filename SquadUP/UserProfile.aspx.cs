@@ -10,7 +10,9 @@ public partial class UserProfile : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        string sessionEmail = Session[0].ToString();
+        UsersNameNavBar.Text = squadMainClass.GetUsersName(sessionEmail);
+        UserNameSideBar.Text = squadMainClass.GetUsersName(sessionEmail);
         conn.Open();
         int userID;
         

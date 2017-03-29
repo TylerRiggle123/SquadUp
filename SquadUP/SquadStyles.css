@@ -84,7 +84,8 @@ body {background-color:#564D4a;
 .editInformation
 {
     position: absolute;
-    top:50px;
+    top:300px;
+    left:1250px;
 
 }
 
@@ -216,6 +217,35 @@ body {background-color:#564D4a;
     position:fixed;
     top:0;
     left:0;
+}
+
+#editEmail{
+    position: absolute;
+    top:5px;
+    left:5px;
+    padding: 2px;
+
+}
+
+#confirmEditEmail{
+    position: absolute;
+    top:5px;
+    left:170px;
+    padding:2px;
+}
+
+#editPassword{
+    position: absolute;
+    top:50px;
+    left:5px;
+    padding:2px;
+}
+
+#confirmEditPassword{
+    position:absolute;
+    top:50px;
+    left:170px;
+    padding:2px;
 }
 
 /*Input Styles*/
