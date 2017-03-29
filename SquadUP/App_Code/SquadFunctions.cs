@@ -14,7 +14,6 @@ public class SquadFunctions
     public int GetUsersID(string sessionEmail)
     {
         con.Open();
-
         int UsersID;
         string getID = "Select UserID from [User] where Email = '" + sessionEmail + "'; ";
         SqlCommand get = new SqlCommand(getID, con);
@@ -32,14 +31,16 @@ public class SquadFunctions
         {
             con.Close();
         }
+        
     }
 
     // obtains and returns  an array of ID's owned by the User's Friends 
     public int[] GetFriendIDs(string sessionEmail)
     {
-        con.Open();
+        
         int[] z = PopulateFriendsList(sessionEmail);
         string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID(sessionEmail) + "';";
+        con.Open();
         SqlCommand getFriends = new SqlCommand(getFriendIDs, con);
         SqlDataReader reader = getFriends.ExecuteReader();
 
@@ -65,14 +66,14 @@ public class SquadFunctions
     // populates and returns an array with the length required to store the User's friend ID's 
     public int[] PopulateFriendsList(string sessionEmail)
     {
-        con.Open();
+        
         int[] friendsList;
         string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID(sessionEmail) + "';";
         SqlCommand getFriends = new SqlCommand(getFriendIDs, con);
 
         int x = 0;
 
-
+        con.Open();
         using (SqlDataReader rdr = getFriends.ExecuteReader())
         {
             while (rdr.Read())
@@ -82,22 +83,24 @@ public class SquadFunctions
             rdr.Close();
         }
         con.Close();
+        
         return friendsList = new int[x];
     }
 
     // obtains and returns a string variable with the Users First and Last Name
     public string GetUsersName(string sessionEmail)
     {
-        con.Open();
+        
         string userName;
         string fNameSQL = "Select FirstName from [User] where UserID=" + GetUsersID(sessionEmail) + ";";
+        con.Open();
         SqlCommand cmd1 = new SqlCommand(fNameSQL, con);
         userName = cmd1.ExecuteScalar().ToString();
-
+        con.Close();
 
         string lNameSQL = "Select LastName from [User] where UserID=" + GetUsersID(sessionEmail) + ";";
         SqlCommand cmd2 = new SqlCommand(lNameSQL, con);
-
+        con.Open();
         userName += cmd2.ExecuteScalar().ToString();
         con.Close();
 
@@ -172,7 +175,8 @@ public class SquadFunctions
 
     /*public string[] GetPosts(string sqlCommand)
     {
-        string[] posts;
+        string[] posts = new string[1];
+        string[] reserve1;
 
         SqlCommand getPosts = new SqlCommand(sqlCommand, con);
         SqlDataReader reader = getPosts.ExecuteReader();
@@ -180,15 +184,18 @@ public class SquadFunctions
         {
             while (reader.Read())
             {
-               while
+               for(int i = 0; i < posts.Length; i++)
+                {
+                    if(reader.get)
+                }
 
             }
 
-        }*/
+        }
 
         return posts;
 
-    }
+    }*/
 
 
 
