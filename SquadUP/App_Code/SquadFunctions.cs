@@ -1,18 +1,18 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 
 
-
 public class SquadFunctions
 {
     SqlConnection con = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
 
+    // obtains and returns the User's ID
     public int GetUsersID(string sessionEmail)
     {
-        if(con != null && con.State == System.Data.ConnectionState.Closed)
         con.Open();
 
         int UsersID;
@@ -28,10 +28,16 @@ public class SquadFunctions
             msg += ex.Message;
             return 0;
         }
+        finally
+        {
+            con.Close();
+        }
     }
 
+    // obtains and returns  an array of ID's owned by the User's Friends 
     public int[] GetFriendIDs(string sessionEmail)
     {
+        con.Open();
         int[] z = PopulateFriendsList(sessionEmail);
         string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID(sessionEmail) + "';";
         SqlCommand getFriends = new SqlCommand(getFriendIDs, con);
@@ -50,12 +56,16 @@ public class SquadFunctions
 
         }
         reader.Close();
+        con.Close();
         return z;
+        
 
     }
 
+    // populates and returns an array with the length required to store the User's friend ID's 
     public int[] PopulateFriendsList(string sessionEmail)
     {
+        con.Open();
         int[] friendsList;
         string getFriendIDs = "Select FriendID from Friends where UserID = '" + GetUsersID(sessionEmail) + "';";
         SqlCommand getFriends = new SqlCommand(getFriendIDs, con);
@@ -71,12 +81,14 @@ public class SquadFunctions
             }
             rdr.Close();
         }
-
+        con.Close();
         return friendsList = new int[x];
     }
 
+    // obtains and returns a string variable with the Users First and Last Name
     public string GetUsersName(string sessionEmail)
     {
+        con.Open();
         string userName;
         string fNameSQL = "Select FirstName from [User] where UserID=" + GetUsersID(sessionEmail) + ";";
         SqlCommand cmd1 = new SqlCommand(fNameSQL, con);
@@ -87,18 +99,18 @@ public class SquadFunctions
         SqlCommand cmd2 = new SqlCommand(lNameSQL, con);
 
         userName += cmd2.ExecuteScalar().ToString();
+        con.Close();
 
         return userName;
     }
 
-    public void Create(SqlConnection conn, string sqlCommand)
+    // executes an insert SQL command passed through a string variable 
+    public void Create(string sqlCommand)
     {
-
+        con.Open();
         try
-        {
-           
-            
-            SqlCommand cmd = new SqlCommand(sqlCommand, conn);
+        {         
+            SqlCommand cmd = new SqlCommand(sqlCommand, con);
             cmd.ExecuteNonQuery();
         }
         catch (System.Data.SqlClient.SqlException ex)
@@ -108,12 +120,11 @@ public class SquadFunctions
         }
         finally
         {
-            
-
-
+            con.Close();
         }
     }
 
+    // returns a boolean value based on a sql command
     public bool LogIn(string sqlCommand)
     {
         con.Open();
@@ -148,5 +159,37 @@ public class SquadFunctions
 
         return valid;
     }
+    
+    // executes an insert SQL command passed through a string variable
+    public void PostForum(string sqlCommand)
+    { 
+        SqlCommand cmd = new SqlCommand(sqlCommand, con);
+
+        con.Open();
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
+
+    /*public string[] GetPosts(string sqlCommand)
+    {
+        string[] posts;
+
+        SqlCommand getPosts = new SqlCommand(sqlCommand, con);
+        SqlDataReader reader = getPosts.ExecuteReader();
+        using (reader)
+        {
+            while (reader.Read())
+            {
+               while
+
+            }
+
+        }*/
+
+        return posts;
+
+    }
+
+
 
 }

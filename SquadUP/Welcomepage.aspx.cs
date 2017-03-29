@@ -11,11 +11,10 @@ public partial class Welcomepage : System.Web.UI.Page
 {
     
     SquadFunctions function = new SquadFunctions();
-    SqlConnection conn = new SqlConnection(@"Data Source=stusql;Initial Catalog=SquadDatabase; Integrated Security=true");
 
     protected void register_Click(object sender, EventArgs e)
     {
-        
+
 
         string userEmail = ((TextBox)EmailRegistry.FindControl("EmailRegistry")).Text;
         string firstName = ((TextBox)FirstNameRegistry.FindControl("FirstNameRegistry")).Text;
@@ -23,14 +22,14 @@ public partial class Welcomepage : System.Web.UI.Page
         string dateOfBirth = ((TextBox)DateOfBirth.FindControl("DateOfBirth")).Text;
         string password = ((TextBox)PasswordRegistry.FindControl("PasswordRegistry")).Text;
         string gender = ((DropDownList)GenderList.FindControl("GenderList")).Text;
-        Session["userEmail"]=userEmail;
+        Session["userEmail"] = userEmail;
 
 
-        string registerSql = "insert into [User](Password, Email, FirstName, LastName, Gender, dateOfBirth) values ('"+password+"','"+userEmail+"','"+firstName+"','"+lastName+"','"+gender+"','"+dateOfBirth+"')";
-        conn.Open();
-        function.Create(conn, registerSql);
-        conn.Close();
+        string registerSql = "insert into [User](Password, Email, FirstName, LastName, Gender, dateOfBirth) values ('" + password + "','" + userEmail + "','" + firstName + "','" + lastName + "','" + gender + "','" + dateOfBirth + "')";
 
+        function.Create(registerSql);
+        Response.Redirect("Homepage.aspx");
+    
     }
 
     protected void SignIn_Click(object sender, EventArgs e)

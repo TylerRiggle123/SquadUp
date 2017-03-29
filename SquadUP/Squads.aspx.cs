@@ -22,7 +22,7 @@ public partial class Squads : System.Web.UI.Page
 
         string createSquad = "insert into [Squads](SquadName, SquadTag, SquadDescription) values('" + squadName + "','" + squadTag + "','" + squadDescription + "';";
 
-        function.Create(conn,createSquad);
+        function.Create(createSquad);
 
     }
 

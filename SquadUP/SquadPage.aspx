@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SquadPage.aspx.cs" Inherits="SquadPage" %>
 
+
 <html>
 <head runat="server">
     <title>Squad UP</title>

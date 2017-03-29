@@ -29,19 +29,8 @@
 
         <div class="createPost">
             <textarea ID="makeForumPost" runat="server" cols="20" rows="2" placeholder ="Hit the keys with force and vigor"></textarea>
-            <asp:Button ID="postButton" runat="server" Text="Post" OnClick="postButton_Click1" />
-        </div>"
-
-        
-
-        
-
-
-        
-
-        
-
-
+            <asp:Button ID="postButton" runat="server" Text="Post" OnClick="postButton_Click" />
+        </div>
     </form>
 </body>
 </html>
