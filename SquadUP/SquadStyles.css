@@ -49,24 +49,28 @@ body {background-color:#564D4a;
     border-radius: 10px;
     box-shadow: 3px 3px rgba(0, 0, 0, 0.42);
     padding: 50px 15px 0 25px;
+    z-index:2;
 }
+
 .createPost{
-    position:absolute;
-    background-color:white;
-    top:200px;
-    left:250px;
+    position:fixed;
+    height: 200px;
+    width:100%;
+    background-color:#564D4a;
+    top:50px;
+    border-bottom: 3px solid #512c2c;
 }
 
 .newsFeed{
     position:absolute;
-    top: 500px;
+    top: 600px;
     right: 250px;
 }
 
 .userFeed{
     position: absolute;
     height: 100%;
-    top: 200px;
+    top: 300px;
     left: 400px;
     width:500px;
     
@@ -83,10 +87,9 @@ body {background-color:#564D4a;
 
 .editInformation
 {
-    position: absolute;
-    top:300px;
+    position: fixed;
+    top:70px;
     left:1250px;
-
 }
 
 
@@ -195,7 +198,7 @@ body {background-color:#564D4a;
 #makeForumPost{
     position: fixed;
     top: 100px;
-    left: 250px;
+    left: 450px;
     height:100px;
     width: 500px;
     border:none;
@@ -206,7 +209,8 @@ body {background-color:#564D4a;
 #postButton{
     background-color:#f24333;
     position: fixed;
-    left: 250px;
+    top:200px;
+    left: 450px;
     width: 500px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -221,31 +225,55 @@ body {background-color:#564D4a;
 
 #editEmail{
     position: absolute;
-    top:5px;
-    left:5px;
-    padding: 2px;
+    padding:2px;
 
 }
-
 #confirmEditEmail{
     position: absolute;
-    top:5px;
-    left:170px;
+    left:145px;
     padding:2px;
+    border:none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 #editPassword{
     position: absolute;
     top:50px;
-    left:5px;
     padding:2px;
 }
-
 #confirmEditPassword{
     position:absolute;
     top:50px;
     left:170px;
     padding:2px;
+    border:none;
+}
+
+#editLocation{
+    position: absolute;
+    top: 100px;
+    padding:2px;
+}
+#confirmEditLocation{
+    position: absolute;
+    top: 100px;
+    left: 170px;
+    padding: 2px;
+    border:none;
+}
+
+#editPhoneNumber{
+    position: absolute;
+    top: 150px;
+    padding: 2px;
+}
+#confirmEditPhoneNumber{
+    position: absolute;
+    top: 150px;
+    left: 170px;
+    padding: 2px;
+    border:none;
 }
 
 /*Input Styles*/

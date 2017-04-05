@@ -62,4 +62,10 @@ public partial class Homepage : System.Web.UI.Page
         
     }
 
+
+    protected void logOutButton_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Hompage.aspx");
+    }
 }

@@ -227,4 +227,10 @@ public partial class UserProfile : System.Web.UI.Page
         command.ExecuteNonQuery();
         conn.Close();
     }
+
+    protected void logOutButton_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Hompage.aspx");
+    }
 }

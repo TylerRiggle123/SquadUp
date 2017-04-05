@@ -30,4 +30,10 @@ public partial class Squads : System.Web.UI.Page
     {
 
     }
+
+    protected void logOutButton_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Hompage.aspx");
+    }
 }

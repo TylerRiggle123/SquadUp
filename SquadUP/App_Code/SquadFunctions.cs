@@ -173,7 +173,8 @@ public class SquadFunctions
         con.Close();
     }
 
-    /*public string[] GetPosts(string sqlCommand)
+    // creates, populates and returns a string array with the posts of the users friends
+    public string[] GetPosts(string sqlCommand)
     {
         string[] posts = new string[1];
         string[] reserve1;
@@ -184,19 +185,34 @@ public class SquadFunctions
         {
             while (reader.Read())
             {
-               for(int i = 0; i < posts.Length; i++)
-                {
-                    if(reader.get)
-                }
 
+                for (int i = 0; i < posts.Length; i++)
+                {
+                    if (reader.NextResult())
+                    {
+                        int j = i;
+                        posts[i] = reader.GetValue(0).ToString();
+                        reserve1 = posts;
+                        posts = new string[j++];
+                        for(int x = 0; x < reserve1.Length;x++ )
+                        {
+                            posts[x] = reserve1[x];
+                        }
+
+                    }
+                    else
+                    {
+                        posts[i] = reader.GetValue(0).ToString();
+                    }
+                }
             }
 
         }
 
         return posts;
 
-    }*/
+    }
 
-
+    
 
 }

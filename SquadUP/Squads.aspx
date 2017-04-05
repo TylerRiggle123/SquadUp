@@ -17,6 +17,7 @@
                 <a id="profile1" href="UserProfile.aspx"><asp:Label ID="UsersNameNavBar" runat="server" Text="Profile"></asp:Label></a>
                 <a id="home" href="Homepage.aspx">Home</a>
                 <a id="findFriends" href="SuggestedFriendspage.aspx">Find Friends</a>
+                <asp:Button ID="logOutButton" runat="server" Text="Log Out" OnClick="logOutButton_Click" />
             </div>
         </div>
 
