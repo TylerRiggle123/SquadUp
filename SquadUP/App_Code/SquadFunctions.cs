@@ -44,15 +44,15 @@ public class SquadFunctions
         SqlCommand getFriends = new SqlCommand(getFriendIDs, con);
         SqlDataReader reader = getFriends.ExecuteReader();
 
-
+        int i = 0;
         using (reader)
         {
+            
             while (reader.Read())
             {
-                for (int i = 0; i < z.Length; i++)
-                {
-                    z[i] = Convert.ToInt32(reader.GetValue(0).ToString());
-                }
+                    
+              z[i] = Convert.ToInt32(reader.GetValue(0).ToString());
+              i++;
             }
 
         }
@@ -127,6 +127,26 @@ public class SquadFunctions
         }
     }
 
+    // executes an insert SQL command passed through a string variable 
+    public void Delete(string sqlCommand)
+    {
+        con.Open();
+        try
+        {
+            SqlCommand cmd = new SqlCommand(sqlCommand, con);
+            cmd.ExecuteNonQuery();
+        }
+        catch (System.Data.SqlClient.SqlException ex)
+        {
+            string msg = "Insert Error:";
+            msg += ex.Message;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     // returns a boolean value based on a sql command
     public bool LogIn(string sqlCommand)
     {
@@ -174,45 +194,35 @@ public class SquadFunctions
     }
 
     // creates, populates and returns a string array with the posts of the users friends
-    public string[] GetPosts(string sqlCommand)
+    public string GetPosts(int[] friendIDs)
     {
-        string[] posts = new string[1];
+        string stuff="<div class=\"newsfeed\">";
+        string[] posts;
         string[] reserve1;
-
-        SqlCommand getPosts = new SqlCommand(sqlCommand, con);
-        SqlDataReader reader = getPosts.ExecuteReader();
-        using (reader)
+        int i = 0;
+        con.Open();
+        for (int y = 0; y< friendIDs.Length; y++ )
         {
-            while (reader.Read())
+            
+            string sqlCommand = "select Post from ForumPosts where userID = " + friendIDs[y];
+            SqlCommand getPosts = new SqlCommand(sqlCommand, con);
+            SqlDataReader reader = getPosts.ExecuteReader();
+            using (reader)
             {
-
-                for (int i = 0; i < posts.Length; i++)
+                while (reader.Read())
                 {
-                    if (reader.NextResult())
-                    {
-                        int j = i;
-                        posts[i] = reader.GetValue(0).ToString();
-                        reserve1 = posts;
-                        posts = new string[j++];
-                        for(int x = 0; x < reserve1.Length;x++ )
-                        {
-                            posts[x] = reserve1[x];
-                        }
-
-                    }
-                    else
-                    {
-                        posts[i] = reader.GetValue(0).ToString();
-                    }
+                    stuff += "<div id=\"newsStory\">" + reader.GetValue(0).ToString() + "</div>";
+                            
                 }
-            }
 
+            }
+            
         }
 
-        return posts;
+        con.Close();
+        return stuff;
+        
 
     }
-
-    
 
 }

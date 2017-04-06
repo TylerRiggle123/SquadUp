@@ -16,6 +16,7 @@ public partial class Homepage : System.Web.UI.Page
     private static int[] FriendIDs;
     private bool AreTherePosts;
     private bool IsFriends;
+    
 
 
 
@@ -25,9 +26,12 @@ public partial class Homepage : System.Web.UI.Page
 
         int UsersID = function.GetUsersID(sessionEmail);
         FriendIDs = function.GetFriendIDs(sessionEmail);
+        
 
         UsersNameNavBar.Text = function.GetUsersName(sessionEmail);
 
+
+        Response.Write(function.GetPosts(FriendIDs));
 
     }
 

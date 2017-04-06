@@ -48,6 +48,8 @@
 
                 <asp:TextBox ID="EditPhoneNumber" runat="server"></asp:TextBox>
                 <asp:Button ID="ConfirmEditPhoneNumber" runat="server" Text="Edit" OnClick ="ConfirmEditPhoneNumber_Click"/><br />
+
+                <asp:Button ID="deleteUser" runat ="server" Text ="Delete My Account" OnClick ="deleteUser_Click" />
             </div>
 
             

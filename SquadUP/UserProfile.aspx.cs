@@ -149,28 +149,6 @@ public partial class UserProfile : System.Web.UI.Page
         UsersNameNavBar.Text = userFName + " " + userLName;
         UserNameSideBar.Text = userFName + " " + userLName;
     }
-
-    //populates a string array 
-    /*private string[] GetUsersFriends()
-    {
-        
-
-        string[] friendNames = new string[PopulateFriendsList()];
-        int[] friendid = GetFriendIDs();
-
-        for(int i = 0; i < friendid.Length; i++)
-        {
-            string getFriendNames = "Select FirstName from [User] where UserID = " + friendid[i] + ";";
-            
-            SqlCommand get = new SqlCommand(getFriendNames, conn);
-            friendNames[i] = get.ExecuteScalar().ToString();
-            
-                   
-            
-        }
-
-        return friendNames;
-    }*/
     
 
     private void GetUserFeed()
@@ -232,5 +210,11 @@ public partial class UserProfile : System.Web.UI.Page
     {
         Session.Abandon();
         Response.Redirect("Hompage.aspx");
+    }
+
+    protected void deleteUser_Click(object sender, EventArgs e)
+    {
+        string sqlCommand = "delete from [User] where userID = " + GetUsersID();
+        squadMainClass.Delete(sqlCommand);
     }
 }
